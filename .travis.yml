@@ -1,7 +1,3 @@
-language: python
-python:
-  - "3.6"
-
 # Install dependencies.
 install:
   - sh <(curl -q https://platform.activestate.com/dl/cli/install.sh) -n
