@@ -1,6 +1,7 @@
 # Playground and Cheatsheet for Learning Python
 
-[![Build Status](https://travis-ci.org/shnewto/learn-python.svg?branch=master)](https://travis-ci.org/shnewto/learn-python)
+[![Linux Build Status](https://travis-ci.org/shnewto/learn-python.svg?branch=master)](https://travis-ci.org/shnewto/learn-python)
+[![Windows Build status](https://ci.appveyor.com/api/projects/status/fgkvuy680gre708t?svg=true)](https://ci.appveyor.com/project/shnewto/learn-python)
 
 > This is a collection of Python scripts that are split by [topics](#table-of-contents) and contain
 code examples with explanations, different use cases and links to further readings.
