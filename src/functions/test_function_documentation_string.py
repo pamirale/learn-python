@@ -15,6 +15,7 @@ paragraphs describing the object’s calling conventions, its side effects, etc.
 """
 
 
+# pylint: disable=unnecessary-pass
 def do_nothing():
     """Do nothing, but document it.
 
