@@ -3,7 +3,9 @@ languages:
 - name: python
 scripts:
   - name: tests
-    value: pytest
+    value: |
+      where pytest
+      pytest
   - name: lints
     value: |
       pylint ./src
