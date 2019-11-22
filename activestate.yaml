@@ -4,7 +4,6 @@ languages:
 scripts:
   - name: tests
     value: |
-      where pytest
       pytest
   - name: lints
     value: |
