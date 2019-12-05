@@ -11,6 +11,3 @@ scripts:
     value: |
       pylint src
       flake8 src --statistics --count
-
-
-
