@@ -6,6 +6,7 @@ The glob module provides a function for making file lists from directory wildcar
 """
 
 import glob
+import os
 
 
 def test_glob():
@@ -15,7 +16,9 @@ def test_glob():
     # In some cases (like on Linux Mint, python3.6) the glob() function returns list
     # in reverse order then  it might be expected. Thus lets sort both lists before comparison
     # using sorted() built-in function.
-    assert sorted(glob.glob('src/standard_libraries/glob_files/*.txt')) == sorted([
-        'src/standard_libraries/glob_files/first_file.txt',
-        'src/standard_libraries/glob_files/second_file.txt'
+
+    path = os.path.join('src', 'standard_libraries', 'glob_files')
+    assert sorted(glob.glob(os.path.join(path, '*.txt'))) == sorted([
+        os.path.join(path, 'first_file.txt'),
+        os.path.join(path, 'second_file.txt')
     ])

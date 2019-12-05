@@ -17,7 +17,7 @@ def test_instance_objects():
     # they are first assigned to. For example, if x is the instance of MyCounter created above,
     # the following piece of code will print the value 16, without leaving a trace.
 
-    # pylint: disable=too-few-public-methods
+    # pylint: disable=too-few-public-methods, unnecessary-pass
     class DummyClass:
         """Dummy class"""
         pass

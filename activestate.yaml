@@ -2,9 +2,12 @@ project: https://platform.activestate.com/shnewto/learn-python?commitID=3ea64485
 languages:
 - name: python
 scripts:
+  - name: noop
+    value: rundll32
   - name: tests
-    value: pytest
+    value: |
+      pytest
   - name: lints
     value: |
-      pylint ./src
-      flake8 ./src --statistics --count
+      pylint src
+      flake8 src --statistics --count
