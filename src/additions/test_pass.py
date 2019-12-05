@@ -7,6 +7,7 @@ the program requires no action.
 """
 
 
+# pylint: disable=unnecessary-pass
 def test_pass_in_function():
     """PASS statement in function
 
@@ -25,7 +26,7 @@ def test_pass_in_loop():
     action. For example:
     """
 
-    # pylint: disable=unused-variable
+    # pylint: disable=unused-variable, unnecessary-pass
     for number in range(100):
         # It just don't do anything but for loop is still valid.
         pass
@@ -37,7 +38,7 @@ def test_pass_in_loop():
     #   pass  # Busy-wait for keyboard interrupt (Ctrl+C)
 
 
-# pylint: disable=too-few-public-methods
+# pylint: disable=too-few-public-methods, unnecessary-pass
 class MyEmptyClass:
     """PASS statement in class
 
