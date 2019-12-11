@@ -4,8 +4,9 @@ init:
 - ps: ''
 install:
 - ps: >-
-    Set-Item -Path Env:NOPROMPT_INSTALL -Value 'true'; IEX (New-Object Net.WebClient).downloadString('https://platform.activestate.com/dl/cli/install.ps1') " 
-    
+    (New-Object Net.WebClient).DownloadFile('https://platform.activestate.com/dl/cli/install.ps1', 'install.ps1')
+
+    Invoke-Expression "install.ps1 -n"
 build_script:
 - cmd: state --version
 test_script:
