@@ -14,7 +14,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install State Tool (Windows)
       if: matrix.os == 'windows-latest'
-      run: powershell IEX(New-Object Net.WebClient).DownloadFile('https://platform.activestate.com/dl/cli/install.ps1', 'install.ps1')
+      run: |
+        (New-Object Net.WebClient).DownloadFile('https://platform.activestate.com/dl/cli/install.ps1', 'install.ps1')
+        Invoke-Expression "install.ps1 -n"
+      shell: powershell
     - name: Install State Tool (Linux&Mac)            
       if: matrix.os != 'windows-latest'      
       run: sh <(curl -q https://platform.activestate.com/dl/cli/install.sh) -n  
