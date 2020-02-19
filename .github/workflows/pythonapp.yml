@@ -28,9 +28,13 @@ jobs:
       if: matrix.os == 'windows-latest'
       env: # Or as an environment variable
         ACTIVESTATE_API_KEY: ${{ secrets.ACTIVESTATE_API_KEY }}  
-      run: $Env:GITHUB_WORKSPACE\state run lints
+      run: |
+        Set-Location -Path $Env:GITHUB_WORKSPACE
+        state run lints
     - name: Test with pytest
       if: matrix.os == 'windows-latest'
       env: # Or as an environment variable
         ACTIVESTATE_API_KEY: ${{ secrets.ACTIVESTATE_API_KEY }}  
-      run: $Env:GITHUB_WORKSPACE\state run tests
+      run: |
+        Set-Location -Path $Env:GITHUB_WORKSPACE
+        state run tests
