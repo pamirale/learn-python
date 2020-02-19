@@ -30,7 +30,9 @@ jobs:
         ACTIVESTATE_API_KEY: ${{ secrets.ACTIVESTATE_API_KEY }}  
       run: |
         Set-Location -Path $Env:GITHUB_WORKSPACE
-        state run lints
+        Get-ChildItem Env:GITHUB_WORKSPACE
+        Get-Location        
+        Invoke-Expression -Command "$Env:GITHUB_WORKSPACE\state.exe run lints"
     - name: Test with pytest
       if: matrix.os == 'windows-latest'
       env: # Or as an environment variable
