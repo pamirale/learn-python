@@ -15,8 +15,10 @@ jobs:
     - name: Install State Tool (Windows)
       if: matrix.os == 'windows-latest'
       run: |
-        echo $GITHUB_WORKSPACE
-        (New-Object Net.WebClient).DownloadFile('https://platform.activestate.com/dl/cli/install.ps1', 'install.ps1'); Invoke-Expression 'install.ps1 -n'
+        Get-ChildItem Env:GITHUB_WORKSPACE
+        Get-Location
+        (New-Object Net.WebClient).DownloadFile('https://platform.activestate.com/dl/cli/install.ps1', 'install.ps1'); 
+        Invoke-Expression -Command "install.ps1 -n"
       shell: powershell
     - name: Install State Tool (Linux&Mac)            
       if: matrix.os != 'windows-latest'      
