@@ -15,8 +15,8 @@ jobs:
     - name: Install State Tool (Windows)
       if: matrix.os == 'windows-latest'
       run: |
-        powershell IEX(New-Object Net.WebClient).DownloadFile("https://platform.activestate.com/dl/cli/install.ps1", "install.ps1")
-        powershell Invoke-Expression 'install.ps1 -n'
+        powershell (New-Object Net.WebClient).DownloadFile('https://platform.activestate.com/dl/cli/install.ps1', 'install.ps1')
+        powershell Invoke-Expression "install.ps1 -n"
       shell: cmd
     - name: Install State Tool (Linux&Mac)            
       if: matrix.os != 'windows-latest'      
