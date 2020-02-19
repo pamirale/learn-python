@@ -18,7 +18,7 @@ jobs:
         Get-ChildItem Env:GITHUB_WORKSPACE
         Get-Location
         (New-Object Net.WebClient).DownloadFile('https://platform.activestate.com/dl/cli/install.ps1', 'install.ps1'); 
-        Invoke-Expression -Command "install.ps1 -n"
+        Invoke-Expression -Command "D:\a\learn-python\learn-python\install.ps1 -n"
       shell: powershell
     - name: Install State Tool (Linux&Mac)            
       if: matrix.os != 'windows-latest'      
