@@ -1,0 +1,16 @@
+steps:
+- name: docker.io/activestate/state_gcb
+  args: ['state', 'run', 'prepare']
+- name: docker.io/activestate/state_gcb
+  args: ['state', 'run', 'recipe']
+- name: docker.io/activestate/state_gcb
+  args: ['state', 'auth']
+artifacts:
+  objects:
+    location: 'gs://activestate_test_artifacts/'
+    paths: ['output']
+options:
+  env:
+  - 'ACTIVESTATE_CLI_DISABLE_UPDATES=true'
+  - 'ACTIVESTATE_CLI_CONFIGDIR=/workspace/.cfg'
+  - 'ACTIVESTATE_CLI_CACHEDIR=/workspace/.cache'
