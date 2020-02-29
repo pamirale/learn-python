@@ -22,7 +22,7 @@ jobs:
       if: matrix.os == 'windows-latest'
       env: 
         ACTIVESTATE_API_KEY: ${{ secrets.ACTIVESTATE_API_KEY }}  
-        ACTIVESTATE_CLI_CACHEDIR: $Env:GITHUB_WORKSPACE\.cache        
+        ACTIVESTATE_CLI_CACHEDIR: ${{ github.workspace }}\.cache
       run: |
         Set-Location -Path $Env:GITHUB_WORKSPACE
         Invoke-Expression -Command "$Env:GITHUB_WORKSPACE\state.exe run lints"
@@ -33,7 +33,7 @@ jobs:
       if: matrix.os != 'windows-latest'
       env: 
         ACTIVESTATE_API_KEY: ${{ secrets.ACTIVESTATE_API_KEY }}  
-        ACTIVESTATE_CLI_CACHEDIR: $Env:GITHUB_WORKSPACE/.cache        
+        ACTIVESTATE_CLI_CACHEDIR: ${{ github.workspace }}/.cache        
       run: state run lints
     - name: Cache state tool cache
       uses: actions/cache@v1
