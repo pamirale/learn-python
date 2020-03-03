@@ -28,9 +28,6 @@ jobs:
     - name: Install State Tool (Linux&Mac)            
       if: matrix.os != 'windows-latest'      
       run: sh <(curl -q https://platform.activestate.com/dl/cli/install.sh) -n
-    - name: Lint with flake8 (Linux&Mac)
-      if: matrix.os != 'windows-latest'
-      run: state run standalone-lints
     - name: Cache state tool cache
       uses: actions/cache@v1
       env:
@@ -42,6 +39,11 @@ jobs:
           ${{ runner.os }}-build-${{ env.cache-name }}
           ${{ runner.os }}-build-
           ${{ runner.os }}-
+    - name: Lint with flake8 (Linux&Mac)
+      if: matrix.os != 'windows-latest'
+      run: |
+        state activate
+        state run standalone-lints
     - name: Test with pytest (Windows)
       if: matrix.os == 'windows-latest'
       env: 
