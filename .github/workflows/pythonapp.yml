@@ -53,4 +53,4 @@ jobs:
       if: matrix.os != 'windows-latest'
       env: 
         ACTIVESTATE_API_KEY: ${{ secrets.ACTIVESTATE_API_KEY }}  
-      run: state run standalone-tests
+      run: state run tests
