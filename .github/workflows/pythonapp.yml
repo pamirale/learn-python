@@ -10,7 +10,6 @@ jobs:
     strategy:
       matrix:
         os: [windows-latest, ubuntu-latest]
-
     steps:
     - uses: actions/checkout@v2
     - name: Install State Tool (Windows)
