@@ -39,8 +39,6 @@ jobs:
         key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('activestate.yaml') }}
         restore-keys: |
           ${{ runner.os }}-build-${{ env.cache-name }}
-          ${{ runner.os }}-build-
-          ${{ runner.os }}-
     - name: Lint with flake8 (Linux&Mac)
       if: matrix.os != 'windows-latest'
       run: state run lints
