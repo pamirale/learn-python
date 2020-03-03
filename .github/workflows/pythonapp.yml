@@ -41,9 +41,7 @@ jobs:
           ${{ runner.os }}-
     - name: Lint with flake8 (Linux&Mac)
       if: matrix.os != 'windows-latest'
-      run: |
-        state activate
-        state run standalone-lints
+      run: state run lints
     - name: Test with pytest (Windows)
       if: matrix.os == 'windows-latest'
       env: 
