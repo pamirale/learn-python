@@ -1,5 +1,5 @@
 # This is a basic workflow to help you get started with GitHub CI using ActivePython
-name: ActivePython application on GithUb CI
+name: ActivePython application on GitHub CI
 
 # Setting up Cache directory and ActiveState Platform API key
 env:
@@ -22,7 +22,7 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-    # Installing State Tool on Windows with some tricks to get it working under powershell
+    # Installing State Tool on Windows to get it working under powershell
     - name: Install State Tool (Windows)
       if: matrix.os == 'windows-latest'
       run: |
