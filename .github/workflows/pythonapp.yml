@@ -22,7 +22,7 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-    # Installing State Tool on Windows to get it working under powershell
+    # Installing State Tool on Windows via Powershell 
     - name: Install State Tool (Windows)
       if: matrix.os == 'windows-latest'
       run: |
@@ -49,18 +49,6 @@ jobs:
     # Execute linting of the project on ActivePython
     - name: Lint with flake8
       run: state run lints
-    # Running project tests using pytest on ActivePython (Linux)
+    # Running project tests using pytest on ActivePython
     - name: Test with pytest
       run: state run tests
-    # Execute linting of the project on ActivePython (Windows)
-#    - name: Lint with flake8 (Windows)
-#      if: matrix.os == 'windows-latest'
-#      run: |
-#        Set-Location -Path $Env:GITHUB_WORKSPACE
-#        Invoke-Expression -Command "$Env:GITHUB_WORKSPACE\state.exe run lints"
-    # Running project tests using pytest on ActivePython (Windows)  
-#    - name: Test with pytest (Windows)
-#      if: matrix.os == 'windows-latest'
-#      run: |
-#        Set-Location -Path $Env:GITHUB_WORKSPACE
-#        Invoke-Expression -Command "$Env:GITHUB_WORKSPACE\state.exe run tests"
