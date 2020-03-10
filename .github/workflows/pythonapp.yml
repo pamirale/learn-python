@@ -28,7 +28,7 @@ jobs:
       run: |
         (New-Object Net.WebClient).DownloadFile('https://platform.activestate.com/dl/cli/install.ps1', 'install.ps1'); 
         Invoke-Expression -Command "$Env:GITHUB_WORKSPACE\install.ps1 -n -t $Env:GITHUB_WORKSPACE"
-      shell: powershell
+        echo "::add-path::$Env:GITHUB_WORKSPACE"
     # Installing State Tool on Linux with default shell behavior
     - name: Install State Tool (Linux)            
       if: matrix.os != 'windows-latest'      
@@ -36,9 +36,10 @@ jobs:
     # Checking ActiveState Platform for project updates
     - name: Update project (Windows)
       if: matrix.os == 'windows-latest'
-      run: |
-        Set-Location -Path $Env:GITHUB_WORKSPACE
-        Invoke-Expression -Command "$Env:GITHUB_WORKSPACE\state.exe pull"
+#      run: |
+#        Set-Location -Path $Env:GITHUB_WORKSPACE
+#        Invoke-Expression -Command "$Env:GITHUB_WORKSPACE\state.exe pull"
+      run: state pull
     # Checking ActiveState Platform for project updates        
     - name: Update project (Linux)            
       if: matrix.os != 'windows-latest'      
