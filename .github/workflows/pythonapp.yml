@@ -34,15 +34,7 @@ jobs:
       if: matrix.os != 'windows-latest'      
       run: sh <(curl -q https://platform.activestate.com/dl/cli/install.sh) -n
     # Checking ActiveState Platform for project updates
-    - name: Update project (Windows)
-      if: matrix.os == 'windows-latest'
-#      run: |
-#        Set-Location -Path $Env:GITHUB_WORKSPACE
-#        Invoke-Expression -Command "$Env:GITHUB_WORKSPACE\state.exe pull"
-      run: state pull
-    # Checking ActiveState Platform for project updates        
-    - name: Update project (Linux)            
-      if: matrix.os != 'windows-latest'      
+    - name: Update project
       run: state pull
     # Caching downloaded build using GitHub CI cache
     - name: Cache state tool cache
@@ -54,23 +46,21 @@ jobs:
         key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('activestate.yaml') }}
         restore-keys: |
           ${{ runner.os }}-build-${{ env.cache-name }}
-    # Execute linting of the project on ActivePython (Linux)
-    - name: Lint with flake8 (Linux)
-      if: matrix.os != 'windows-latest'
+    # Execute linting of the project on ActivePython
+    - name: Lint with flake8
       run: state run lints
     # Running project tests using pytest on ActivePython (Linux)
-    - name: Test with pytest (Linux)
-      if: matrix.os != 'windows-latest'
+    - name: Test with pytest
       run: state run tests
     # Execute linting of the project on ActivePython (Windows)
-    - name: Lint with flake8 (Windows)
-      if: matrix.os == 'windows-latest'
-      run: |
-        Set-Location -Path $Env:GITHUB_WORKSPACE
-        Invoke-Expression -Command "$Env:GITHUB_WORKSPACE\state.exe run lints"
+#    - name: Lint with flake8 (Windows)
+#      if: matrix.os == 'windows-latest'
+#      run: |
+#        Set-Location -Path $Env:GITHUB_WORKSPACE
+#        Invoke-Expression -Command "$Env:GITHUB_WORKSPACE\state.exe run lints"
     # Running project tests using pytest on ActivePython (Windows)  
-    - name: Test with pytest (Windows)
-      if: matrix.os == 'windows-latest'
-      run: |
-        Set-Location -Path $Env:GITHUB_WORKSPACE
-        Invoke-Expression -Command "$Env:GITHUB_WORKSPACE\state.exe run tests"
+#    - name: Test with pytest (Windows)
+#      if: matrix.os == 'windows-latest'
+#      run: |
+#        Set-Location -Path $Env:GITHUB_WORKSPACE
+#        Invoke-Expression -Command "$Env:GITHUB_WORKSPACE\state.exe run tests"
