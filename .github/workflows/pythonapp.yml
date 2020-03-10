@@ -50,10 +50,5 @@ jobs:
     - name: Lint with flake8
       run: state run lints
     # Running project tests using pytest on ActivePython
-    - name: Test with pytest 2
-      run: |
-        state activate
-        pytest
-    # Running project tests using pytest on ActivePython
     - name: Test with pytest
       run: state run tests
