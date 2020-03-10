@@ -11,12 +11,3 @@ scripts:
     value: |
       pylint src
       flake8 src --statistics --count
-  - name: standalone-tests
-    standalone: true
-    value: |
-      pytest
-  - name: standalone-lints
-    standalone: true  
-    value: |
-      pylint src
-      flake8 src --statistics --count
