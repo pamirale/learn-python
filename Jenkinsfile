@@ -27,6 +27,12 @@ chmod +x install.sh
       }
     }
 
+    stage('Cleanup') {
+      steps {
+        sh '$WORKSPACE/state clean'
+      }
+    }
+
   }
   environment {
     ACTIVESTATE_API_KEY = 'credentials(\'api-key\')'
