@@ -15,6 +15,18 @@ chmod +x install.sh
       }
     }
 
+    stage('Lint') {
+      steps {
+        sh '$WORKSPACE/state run lints'
+      }
+    }
+
+    stage('Test') {
+      steps {
+        sh '$WORKSPACE/state run tests'
+      }
+    }
+
   }
   environment {
     ACTIVESTATE_API_KEY = 'credentials(\'api-key\')'
