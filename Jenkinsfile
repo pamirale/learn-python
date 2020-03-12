@@ -11,7 +11,7 @@ chmod +x install.sh
 
     stage('Update Project') {
       steps {
-        sh 'sh \'state pull\''
+        sh '$WORKSPACE/state.exe pull'
       }
     }
 
