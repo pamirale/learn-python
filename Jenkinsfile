@@ -3,11 +3,9 @@ pipeline {
   stages {
     stage('Install state tool') {
       steps {
-        sh '''sh\'\'\'
-curl -q https://platform.activestate.com/dl/cli/install.sh -o install.sh
+        sh '''curl -q https://platform.activestate.com/dl/cli/install.sh -o install.sh
 chmod +x install.sh
-./install.sh -n -t $WORKSPACE || true
-\'\'\''''
+./install.sh -n -t $WORKSPACE || true'''
       }
     }
 
