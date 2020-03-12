@@ -29,7 +29,7 @@ chmod +x install.sh
 
     stage('Cleanup') {
       steps {
-        sh '$WORKSPACE/state clean'
+        sh '$WORKSPACE/state clean -f'
       }
     }
 
