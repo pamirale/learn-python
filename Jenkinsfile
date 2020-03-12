@@ -19,7 +19,6 @@ chmod +x install.sh
 
   }
   environment {
-    SHELL = 'bin/bash'
     ACTIVESTATE_API_KEY = 'credentials(\'api-key\')'
   }
 }
