@@ -3,12 +3,6 @@ pipeline {
   stages {
     stage('Install state tool') {
       steps {
-        ws(dir: 'myworkspace') {
-          tool 'state'
-          sh 'env'
-        }
-
-        sh 'env'
         sh '''curl -q https://platform.activestate.com/dl/cli/install.sh -o install.sh
 chmod +x install.sh
 ./install.sh -n -t $WORKSPACE || true'''
@@ -17,8 +11,7 @@ chmod +x install.sh
 
     stage('Update Project') {
       steps {
-        tool 'state'
-        sh 'state pull'
+        sh '$WORKSPACE\\state pull'
       }
     }
 
