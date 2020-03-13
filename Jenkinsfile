@@ -9,6 +9,12 @@ chmod +x install.sh
       }
     }
 
+    stage('Authenticate with Platform') {
+      steps {
+        sh '$WORKSPACE/state auth --token $ACTIVESTATE_API_KEY'
+      }
+    }
+    
     stage('Update Project') {
       steps {
         sh '$WORKSPACE/state pull'
@@ -24,12 +30,6 @@ chmod +x install.sh
     stage('Test') {
       steps {
         sh '$WORKSPACE/state run tests'
-      }
-    }
-
-    stage('Authenticate with Platform') {
-      steps {
-        sh '$WORKSPACE/state auth --token $ACTIVESTATE_API_KEY'
       }
     }
 
