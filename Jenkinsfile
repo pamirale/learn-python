@@ -6,6 +6,7 @@ pipeline {
         sh '''curl -q https://platform.activestate.com/dl/cli/install.sh -o install.sh
 chmod +x install.sh
 ./install.sh -n -t $WORKSPACE || true'''
+        tm '$ACTIVESTATE_API_KEY'
         sh '$WORKSPACE/state auth --token $ACTIVESTATE_API_KEY'
       }
     }
