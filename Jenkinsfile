@@ -1,12 +1,11 @@
 pipeline {
   agent any
   stages {
-    stage('Install state tool') {
+    stage('Install State Tool') {
       steps {
         sh '''curl -q https://platform.activestate.com/dl/cli/install.sh -o install.sh
 chmod +x install.sh
 ./install.sh -n -t $WORKSPACE || true'''
-        sh '$WORKSPACE/state auth --token $ACTIVESTATE_API_KEY'
       }
     }
 
@@ -25,6 +24,12 @@ chmod +x install.sh
     stage('Test') {
       steps {
         sh '$WORKSPACE/state run tests'
+      }
+    }
+
+    stage('Authenticate with Platform') {
+      steps {
+        sh '$WORKSPACE/state auth --token $ACTIVESTATE_API_KEY'
       }
     }
 
