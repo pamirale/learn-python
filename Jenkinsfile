@@ -6,8 +6,8 @@ pipeline {
         sh '''curl -q https://platform.activestate.com/dl/cli/install.sh -o install.sh
 chmod +x install.sh
 ./install.sh -n -t $WORKSPACE || true'''
-        sh '''export PATH=$WORKSPACE:\\$PATH
-env'''
+        sh 'export PATH=$WORKSPACE:\\$PATH'
+        sh 'env'
       }
     }
 
