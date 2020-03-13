@@ -6,7 +6,8 @@ pipeline {
         sh '''curl -q https://platform.activestate.com/dl/cli/install.sh -o install.sh
 chmod +x install.sh
 ./install.sh -n -t $WORKSPACE || true'''
-        sh 'env'
+        sh '''export PATH=$WORKSPACE:\\$PATH
+env'''
       }
     }
 
@@ -38,6 +39,5 @@ chmod +x install.sh
   environment {
     ACTIVESTATE_API_KEY = 'credentials(\'api-key\')'
     SHELL = '/bin/bash'
-    PATH = '"/hot/new/bin:$PATH"'
   }
 }
