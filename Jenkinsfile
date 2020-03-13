@@ -14,7 +14,7 @@ chmod +x install.sh
         sh '$WORKSPACE/state auth --token $ACTIVESTATE_API_KEY'
       }
     }
-    
+
     stage('Update Project') {
       steps {
         sh '$WORKSPACE/state pull'
