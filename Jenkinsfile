@@ -13,6 +13,7 @@ chmod +x install.sh
 
     stage('Update Project') {
       steps {
+        tool 'state'
         sh 'state pull'
       }
     }
