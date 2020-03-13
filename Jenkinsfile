@@ -6,9 +6,6 @@ pipeline {
         sh '''curl -q https://platform.activestate.com/dl/cli/install.sh -o install.sh
 chmod +x install.sh
 ./install.sh -n -t $WORKSPACE || true'''
-        sh '''echo $PATH
-echo "PATH is: $PATH"
-echo ${env.PATH}'''
       }
     }
 
