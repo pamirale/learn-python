@@ -39,6 +39,5 @@ chmod +x install.sh
   environment {
     ACTIVESTATE_API_KEY = 'credentials(\'api-key\')'
     SHELL = '/bin/bash'
-    PATH = '~/:$PATH'
   }
 }
