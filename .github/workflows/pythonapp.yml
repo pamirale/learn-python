@@ -1,0 +1,54 @@
+# This is a basic workflow to help you get started with GitHub CI using ActivePython
+name: ActivePython application on GitHub CI
+
+# Setting up Cache directory and ActiveState Platform API key
+env:
+  ACTIVESTATE_CLI_CACHEDIR: ${{ github.workspace }}/.cache        
+  ACTIVESTATE_API_KEY: ${{ secrets.ACTIVESTATE_API_KEY }}  
+  
+# Controls when the action will run. Triggers the workflow on push events on the default branch 
+on: [push]
+
+# A CI workflow  is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on (this one is a matrix build)
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        # Building on both Windows and Linux(Ubuntu) simultaneously 
+        os: [windows-latest, ubuntu-latest]
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+    # Installing State Tool on Windows via Powershell 
+    - name: Install State Tool (Windows)
+      if: matrix.os == 'windows-latest'
+      run: |
+        (New-Object Net.WebClient).DownloadFile('https://platform.activestate.com/dl/cli/install.ps1', 'install.ps1'); 
+        Invoke-Expression -Command "$Env:GITHUB_WORKSPACE\install.ps1 -n -t $Env:GITHUB_WORKSPACE"
+        echo "::add-path::$Env:GITHUB_WORKSPACE"
+    # Installing State Tool on Linux with default shell behavior
+    - name: Install State Tool (Linux)            
+      if: matrix.os != 'windows-latest'      
+      run: sh <(curl -q https://platform.activestate.com/dl/cli/install.sh) -n
+    # Checking ActiveState Platform for project updates
+    - name: Update project
+      run: state pull
+    # Caching downloaded build using GitHub CI cache
+    - name: Cache state tool cache
+      uses: actions/cache@v1
+      env:
+        cache-name: cache-platform-build
+      with:
+        path: ${{ env.ACTIVESTATE_CLI_CACHEDIR }}
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('activestate.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}
+    # Execute linting of the project on ActivePython
+    - name: Lint with flake8
+      run: state run lints
+    # Running project tests using pytest on ActivePython
+    - name: Test with pytest
+      run: state run tests
