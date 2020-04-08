@@ -1,15 +1,12 @@
 steps:
 - name: docker.io/activestate/state_gcb
-  args: ['ls', '-l']
-- name: docker.io/activestate/state_gcb
   args: ['state', 'deploy', 'shnewto/learn-python', '--path', '/workspace/.state']
 - name: docker.io/activestate/state_gcb
-  args: ['ls', '-l']
+  args: ['ls', '-al']
 - name: docker.io/activestate/state_gcb
-  args: ['bin/pytest']
-  dir: '.state/07952536'
+  args: ['.state/07952536/bin/pytest']
 - name: docker.io/activestate/state_gcb
-  args: ['ls', '-l']
+  args: ['ls', '-al']
 - name: docker.io/activestate/state_gcb
   args: ['bash', '-c', 'pylint src && flake8 src --statistics --count']
 artifacts:
