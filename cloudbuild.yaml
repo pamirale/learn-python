@@ -5,10 +5,6 @@ steps:
   args: ['.state/07952536/bin/pytest']
 - name: docker.io/activestate/state_gcb
   args: ['bash', '-c', '.state/07952536/bin/pylint src && .state/07952536/bin/flake8 src --statistics --count']
-artifacts:
-  objects:
-    location: 'gs://activestate_test_artifacts/'
-    paths: ['output']
 options:
   env:
   - 'ACTIVESTATE_CLI_DISABLE_UPDATES=true'
