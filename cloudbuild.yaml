@@ -2,9 +2,11 @@ steps:
 - name: docker.io/activestate/state_gcb
   args: ['state', 'deploy', 'shnewto/learn-python', '--path', '/workspace/.state']
 - name: docker.io/activestate/state_gcb
-  args: ['.state/07952536/bin/pytest']
+  args: ['.state/07952536/bin/pylint','src']
 - name: docker.io/activestate/state_gcb
-  args: ['bash', '-c', '.state/07952536/bin/pylint src && .state/07952536/bin/flake8 src --statistics --count']
+  args: ['.state/07952536/bin/flake8,'src','--statistics','--count']
+- name: docker.io/activestate/state_gcb
+  args: ['.state/07952536/bin/pytest']
 options:
   env:
   - 'ACTIVESTATE_CLI_DISABLE_UPDATES=true'
