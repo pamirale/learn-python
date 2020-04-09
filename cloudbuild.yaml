@@ -12,4 +12,5 @@ steps:
 options:
   env:
   - 'ACTIVESTATE_CLI_DISABLE_UPDATES=true'
+  - 'GOOGLE_APPLICATION_PROJECT=$PROJECT_ID'
   - 'PATH=/workspace/.state/07952536/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
