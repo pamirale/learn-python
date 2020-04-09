@@ -1,6 +1,14 @@
 steps:
+- name: docker.io/activestate/state_gcb	
+  args: ['bash', '-c', 'env']
 - name: docker.io/activestate/state_gcb
   args: ['state', 'deploy', 'shnewto/learn-python', '--path', '/workspace/.state']
+- name: docker.io/activestate/state_gcb	
+  args: ['bash', '-c', 'env']
+- name: docker.io/activestate/state_gcb	
+  args: ['pytest']
+  env: 
+  - 'PATH=/workspace/.state/bin'
 - name: docker.io/activestate/state_gcb
   args: ['.state/07952536/bin/pylint','src']
 - name: docker.io/activestate/state_gcb
