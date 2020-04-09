@@ -16,4 +16,4 @@ steps:
 options:
   env:
   - 'ACTIVESTATE_CLI_DISABLE_UPDATES=true'
-  - 'PATH=/workspace/07952536/.state/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+  - 'PATH=/workspace/.state/07952536/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
