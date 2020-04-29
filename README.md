@@ -1,5 +1,5 @@
 ## A fork of the [learn-python](https://github.com/trekhleb/learn-python) project used to explore ways to use the ActiveState Platform and its CLI the State Tool. 
-If you're here to explore and experiment with he ActiveState Platform and its CLI the State Tool, welcome! If you didn't know you were interested but are now, welcome!
+If you're here to explore and experiment with he [ActiveState Platform](https://platform.activestate.com/shnewto/learn-python) and its CLI the [State Tool](https://www.activestate.com/products/platform/state-tool), welcome! If you didn't know you were interested but are now, welcome!
 
 But if you're looking to learn python or contribute to the learn-python project, [the original repo](https://github.com/trekhleb/learn-python) is the right place for you. It'll always be up to date, the maintainer is able to tackle issues and PRs, and it for sure deserves all the credit for the value it provides to the community :smile:
 
