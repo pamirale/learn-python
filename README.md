@@ -163,7 +163,7 @@ pip install -r requirements.txt
 
 **Alternative approach**
 
-On Linux and have ActiveState's [state tool](http://docs.activestate.com/platform/start/state.html)?
+Have ActiveState's [State Tool](https://www.activestate.com/products/platform/state-tool/)?
 - After cloning this repository, just `cd` into it and run `state activate`
 
 
