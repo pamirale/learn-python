@@ -31,7 +31,7 @@ before_script:
   - ls -l 
 #  - ls -l workspace/.state
 # Download and install the language runtime   
-  - state deploy shnewto/learn-python --path $CI_PROJECT_DIR/workspace/.state --force
+  - state deploy shnewto/learn-python --path $CI_PROJECT_DIR/workspace/.state --force -o editor
   - ls -l workspace/.state
 test:
   script:
