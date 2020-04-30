@@ -27,11 +27,12 @@ before_script:
 # Update ActiveState Platfrom Project to the latest version 
   - state pull
 # Download and install the language runtime   
-  - state activate
+  - state deploy shnewto/learn-python
 
 test:
   script:
-# Lint eode  
-    - state run lints
+# Lint eode   
+    - pylint src
+    - flake8 src --statistics --count
 # Test code    
-    - state run tests
+    - pytest
