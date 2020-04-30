@@ -16,7 +16,7 @@ image: frolvlad/alpine-glibc
 cache:
   key: "$CI_JOB_NAME-$CI_COMMIT_REF_SLUG"
   paths:
-  - /root/.cache/activestate/
+  - /workspace/.state/
 
 before_script:
 # Install state tool
@@ -29,7 +29,7 @@ before_script:
 # Update ActiveState Platfrom Project to the latest version 
   - state pull  
 # Download and install the language runtime   
-  - state activate
+  - state activate --path /workspace/.state
 
 test:
   script:
