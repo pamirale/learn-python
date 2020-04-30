@@ -1,0 +1,37 @@
+# https://hub.docker.com/r/library/python/tags/
+#image: python:latest
+
+# Change pip's cache directory to be inside the project directory since we can
+# only cache local items.
+#variables:
+#  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+
+# Pip's cache doesn't store the python packages
+# https://pip.pypa.io/en/stable/reference/pip_install/#caching
+#
+# If you want to also cache the installed packages, you have to install
+# them in a virtualenv and cache it as well.
+
+#cache:
+#  paths:
+#   - .cache/pip
+#    - venv/
+
+before_script:
+# Install state tool
+  - sh <(curl -q https://platform.activestate.com/dl/cli/install.sh) -n
+# Check state tool version  
+  - state --version
+# Authenticate with the platform using preset env variable  
+  - state auth
+# Update ActiveState Platfrom Project to the latest version 
+  - state pull
+# Download and install the language runtime   
+  - state activate
+
+test:
+  script:
+# Lint eode  
+    - state run lints
+# Test code    
+    - state run tests
