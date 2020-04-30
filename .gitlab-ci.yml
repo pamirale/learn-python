@@ -27,9 +27,11 @@ before_script:
 # Authenticate with the platform using preset env variable  
   - state auth
 # Update ActiveState Platfrom Project to the latest version 
-  - state pull  
+#  - state pull  
+  - ls -l 
+  - ls -l /workspace/.state
 # Download and install the language runtime   
-  - state activate --path /workspace/.state
+  - state deploy shnewto/learn-python --path /workspace/.state
 
 test:
   script:
