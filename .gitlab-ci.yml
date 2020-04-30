@@ -16,7 +16,7 @@ image: frolvlad/alpine-glibc
 cache:
   key: "$CI_JOB_NAME-$CI_COMMIT_REF_SLUG"
   paths:
-  - /workspace/.state/
+  - workspace/.state/
 
 before_script:
 # Install state tool
@@ -29,10 +29,10 @@ before_script:
 # Update ActiveState Platfrom Project to the latest version 
 #  - state pull  
   - ls -l 
-  - ls -l /workspace/.state
+  - ls -l workspace/.state
 # Download and install the language runtime   
-  - state deploy shnewto/learn-python --path /workspace/.state
-  - ls -l /workspace/.state
+  - state deploy shnewto/learn-python --path workspace/.state
+  - ls -l workspace/.state
 test:
   script:
 # Lint eode   
