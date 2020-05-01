@@ -1,40 +1,47 @@
 # https://hub.docker.com/r/library/python/tags/
-#image: python:latest
-image: frolvlad/alpine-glibc
+image: python:latest
+#image: frolvlad/alpine-glibc
 
 # Change pip's cache directory to be inside the project directory since we can
 # only cache local items.
-#variables:
-#  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
 
 # Pip's cache doesn't store the python packages
 # https://pip.pypa.io/en/stable/reference/pip_install/#caching
 #
 # If you want to also cache the installed packages, you have to install
 # them in a virtualenv and cache it as well.
-
+cache:
+  paths:
+    - .cache/pip
+    - venv/
 #cache:
 #  key: "$CI_JOB_NAME-$CI_COMMIT_REF_SLUG"
 #  paths:
 #  - workspace/.state/
 
 before_script:
+  - python -V               # Print out python version for debugging
+  - pip install virtualenv
+  - pip install -r requirements.txt
+  - virtualenv venv
+  - source venv/bin/activate
+
 # Install state tool
 #  - sh <(curl -q https://platform.activestate.com/dl/cli/install.sh) -n
-  - wget https://platform.activestate.com/dl/cli/install.sh
-  - chmod +x ./install.sh
-  - ./install.sh -n -t /usr/local/bin
+#  - wget https://platform.activestate.com/dl/cli/install.sh
+#  - chmod +x ./install.sh
+#  - ./install.sh -n -t /usr/local/bin
 # Authenticate with the platform using preset env variable  
-  - state auth
-# Update ActiveState Platfrom Project to the latest version 
-#  - state pull  
-#  - ls -l workspace/.state
+#  - state auth
 # Download and install the language runtime   
-  - state deploy shnewto/learn-python #--path $CI_PROJECT_DIR/workspace/.state --force
+#  - state deploy shnewto/learn-python #--path $CI_PROJECT_DIR/workspace/.state --force
 test:
   script:
 # Lint code   
     - pylint src
+    - pip install flake8
     - flake8 src --statistics --count
 # Test code    
     - pytest
