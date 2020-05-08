@@ -38,7 +38,9 @@ jobs:
     #  run: state pull
     # Checking ActiveState Platform for project updates
     - name: Deploy project
-      run: state deploy MyOrg/learn-python
+      run: state deploy install MyOrg/learn-python
+    - name: Configure project
+      run: state deploy configure MyOrg/learn-python
     # Caching downloaded build using GitHub CI cache
     - name: Cache state tool cache
       uses: actions/cache@v1
