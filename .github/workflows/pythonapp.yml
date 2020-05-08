@@ -18,7 +18,7 @@ jobs:
     strategy:
       matrix:
         # Building on both Windows and Linux(Ubuntu) simultaneously 
-        os: [windows-latest]
+        os: [windows-latest, ubuntu-latest]
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
@@ -34,8 +34,8 @@ jobs:
       if: matrix.os != 'windows-latest'      
       run: sh <(curl -q https://platform.activestate.com/dl/cli/install.sh) -n
     # Checking ActiveState Platform for project updates
-    #- name: Update project
-    #  run: state pull
+    - name: Update project
+      run: state pull
     # Caching downloaded build using GitHub CI cache
     - name: Cache state tool cache
       uses: actions/cache@v1
