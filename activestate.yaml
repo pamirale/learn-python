@@ -1,4 +1,4 @@
-project: https://platform.activestate.com/MyOrg/learn-python
+project: https://platform.activestate.com/MyOrg/learn-python?commitID=2d09e3b6-a936-4956-a728-6c975a30f2fe
 languages:
 - name: python
 scripts:
