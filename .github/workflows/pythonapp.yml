@@ -16,6 +16,7 @@ jobs:
     # The type of runner that the job will run on (this one is a matrix build)
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         # Building on both Windows, Linux(Ubuntu) and Mac simultaneously 
         os: [windows-latest, ubuntu-latest, macos-latest]        
