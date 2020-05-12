@@ -38,8 +38,13 @@ jobs:
     #- name: Update project
     #  run: state pull
     # Checking ActiveState Platform for project updates
+    - name: Deploy project (Mac)
+      if: matrix.os == 'macos-latest'      
+      run: |
+        state deploy MyOrg/learn-python --path $Env:GITHUB_WORKSPACE
+        echo "::add-path::$Env:GITHUB_WORKSPACE"
     - name: Deploy project
-      if: matrix.os != 'windows-latest'      
+      if: matrix.os == 'ubuntu-latest'      
       run: state deploy MyOrg/learn-python
     - name: Deploy project (Windows)
       if: matrix.os == 'windows-latest'
