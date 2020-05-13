@@ -42,16 +42,16 @@ jobs:
     - name: Deploy project 
       if: matrix.os == 'macos-latest'      
       run: |
-        state deploy MyOrg/learn-python --path $GITHUB_WORKSPACE
+        state deploy MyOrg/learn-python 
+# --path $GITHUB_WORKSPACE
         echo "::add-path::$GITHUB_WORKSPACE/bin"
     - name: Deploy project (Linux)
       if: matrix.os == 'ubuntu-latest'      
       run: state deploy MyOrg/learn-python
     - name: Deploy project (Windows)
       if: matrix.os == 'windows-latest'
-      run: |
-        state deploy MyOrg/learn-python --path $Env:GITHUB_WORKSPACE
-        echo "::add-path::$Env:GITHUB_WORKSPACE\bin" 
+      run: state deploy MyOrg/learn-python
+#        echo "::add-path::$Env:GITHUB_WORKSPACE\bin" 
 #      shell: cmd
     # Caching downloaded build using GitHub CI cache
     - name: Cache state tool cache
