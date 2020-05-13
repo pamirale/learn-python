@@ -67,7 +67,7 @@ jobs:
     # Execute linting of the project on ActivePython
     - name: Lint with pylint
       run: |
-        echo %PATH%
+        echo $Env:Path
         pylint src
     - name: Lint with flake8
       run: flake8 src --statistics --count
