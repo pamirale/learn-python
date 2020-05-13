@@ -49,7 +49,9 @@ jobs:
       run: state deploy MyOrg/learn-python
     - name: Deploy project (Windows)
       if: matrix.os == 'windows-latest'
-      run: state deploy MyOrg/learn-python
+      run: |
+        state deploy MyOrg/learn-python --path $Env:GITHUB_WORKSPACE
+        echo "::add-path::$Env:GITHUB_WORKSPACE\bin" 
 #      shell: cmd
     # Caching downloaded build using GitHub CI cache
     - name: Cache state tool cache
@@ -63,7 +65,10 @@ jobs:
           ${{ runner.os }}-build-${{ env.cache-name }}
     # Execute linting of the project on ActivePython
     - name: Lint with pylint
-      run: pylint src
+      run: |
+        echo $PATH
+        echo %PATH%
+        pylint src
     - name: Lint with flake8
       run: flake8 src --statistics --count
     # Running project tests using pytest on ActivePython
