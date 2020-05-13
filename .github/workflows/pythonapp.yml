@@ -73,8 +73,8 @@ jobs:
         echo $Env:Path
         dir
         dir .cache/bin
-    - name: Lint with flake8
-      run: flake8 src --statistics --count
+#    - name: Lint with flake8
+#      run: flake8 src --statistics --count
     # Running project tests using pytest on ActivePython
     - name: Test with pytest
       run: pytest
