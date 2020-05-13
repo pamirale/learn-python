@@ -65,9 +65,8 @@ jobs:
           ${{ runner.os }}-build-${{ env.cache-name }}
     # Execute linting of the project on ActivePython
     - name: Lint with pylint
-      run: |
+      run: pylint src
 #        echo $Env:Path
-        pylint src
     - name: Lint with flake8
       run: flake8 src --statistics --count
     # Running project tests using pytest on ActivePython
