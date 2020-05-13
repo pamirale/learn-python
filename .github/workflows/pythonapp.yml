@@ -65,8 +65,13 @@ jobs:
           ${{ runner.os }}-build-${{ env.cache-name }}
     # Execute linting of the project on ActivePython
     - name: Lint with pylint
+      if: matrix.os != 'windows-latest'
       run: pylint src
-#        echo $Env:Path
+    - name: Lint with pylint (Win)
+      if: matrix.os == 'windows-latest'
+      run: |
+        echo $Env:Path
+        dir
     - name: Lint with flake8
       run: flake8 src --statistics --count
     # Running project tests using pytest on ActivePython
