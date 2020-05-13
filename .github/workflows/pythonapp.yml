@@ -40,14 +40,13 @@ jobs:
     #  run: state pull
     # Checking ActiveState Platform for project updates
     - name: Deploy project 
-#      if: matrix.os == 'macos-latest'      
-      if: matrix.os != 'windows-latest'
+      if: matrix.os == 'macos-latest'      
       run: |
         state deploy MyOrg/learn-python --path $GITHUB_WORKSPACE
         echo "::add-path::$GITHUB_WORKSPACE/bin"
-#    - name: Deploy project
-#      if: matrix.os == 'ubuntu-latest'      
-#      run: state deploy MyOrg/learn-python
+    - name: Deploy project (Linux)
+      if: matrix.os == 'ubuntu-latest'      
+      run: state deploy MyOrg/learn-python
     - name: Deploy project (Windows)
       if: matrix.os == 'windows-latest'
       run: |
@@ -67,7 +66,7 @@ jobs:
     # Execute linting of the project on ActivePython
     - name: Lint with pylint
       run: |
-        echo $Env:Path
+#        echo $Env:Path
         pylint src
     - name: Lint with flake8
       run: flake8 src --statistics --count
