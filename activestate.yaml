@@ -1,10 +1,12 @@
 project: https://platform.activestate.com/MyOrg/learn-python
+branch: unstable
+version: 0.9.17-SHA9f58be90
 languages:
 - name: python
 scripts:
-  - name: tests
-    description: Executes tests
-    value: pytest
-  - name: lints
-    description: Executes linting tools
-    value: pylint src && flake8 src --statistics --count
+- name: tests
+  description: Executes tests
+  value: pytest
+- name: lints
+  description: Executes linting tools
+  value: pylint src && flake8 src --statistics --count
