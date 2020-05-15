@@ -1,13 +1,10 @@
-project: https://platform.activestate.com/shnewto/learn-python?commitID=a826e5ab-d2e7-4275-a0b7-00639847ae32
+project: https://platform.activestate.com/shnewto/learn-python
 languages:
 - name: python
 scripts:
-  - name: noop
-    value: rundll32
-  - name: tests
-    value: |
-      pytest
-  - name: lints
-    value: |
-      pylint src
-      flake8 src --statistics --count
+- name: tests
+  description: Executes tests
+  value: pytest
+- name: lints
+  description: Executes linting tools
+  value: pylint src && flake8 src --statistics --count

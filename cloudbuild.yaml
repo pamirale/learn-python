@@ -1,16 +1,11 @@
 steps:
 - name: docker.io/activestate/state_gcb
-  args: ['state', 'run', 'prepare']
+  args: ['state','auth']
 - name: docker.io/activestate/state_gcb
-  args: ['state', 'run', 'recipe']
+  args: ['state', 'deploy', 'shnewto/learn-python', '--path', '/workspace/.state']
 - name: docker.io/activestate/state_gcb
-  args: ['state', 'auth']
-artifacts:
-  objects:
-    location: 'gs://activestate_test_artifacts/'
-    paths: ['output']
-options:
-  env:
-  - 'ACTIVESTATE_CLI_DISABLE_UPDATES=true'
-  - 'ACTIVESTATE_CLI_CONFIGDIR=/workspace/.cfg'
-  - 'ACTIVESTATE_CLI_CACHEDIR=/workspace/.cache'
+  args: ['pylint','src']
+- name: docker.io/activestate/state_gcb
+  args: ['flake8','src','--statistics','--count']
+- name: docker.io/activestate/state_gcb
+  args: ['pytest']

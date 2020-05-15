@@ -8,7 +8,7 @@ install:
 
     Invoke-Expression "install.ps1 -n"
 build_script:
-- cmd: state --version
+- cmd: state pull
 test_script:
 - cmd: >-
     state run lints

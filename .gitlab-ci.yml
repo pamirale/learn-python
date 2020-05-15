@@ -1,0 +1,27 @@
+# Use Alpine + glibc image from Docker Hub
+image: frolvlad/alpine-glibc
+
+# Optionally use caching (currenty it slows down instead of speeding up, so not using)
+#cache:
+#  key: "$CI_JOB_NAME-$CI_COMMIT_REF_SLUG"
+#  paths:
+#  - workspace/.state/
+
+before_script:
+# Install state tool
+#  - sh <(curl -q https://platform.activestate.com/dl/cli/install.sh) -n
+# We need to use the commands below due to install.sh having non-alpine dependencies (no curl)
+  - wget https://platform.activestate.com/dl/cli/install.sh
+  - chmod +x ./install.sh
+  - ./install.sh -n -t /usr/local/bin
+# Authenticate with the platform using preset env variable (only required for private projects) 
+#  - state auth
+# Download and install the language runtime   
+  - state deploy shnewto/learn-python
+test:
+  script:
+# Lint code   
+    - pylint src
+    - flake8 src --statistics --count
+# Test code    
+    - pytest
