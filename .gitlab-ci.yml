@@ -17,7 +17,7 @@ before_script:
 # Authenticate with the platform using preset env variable (only required for private projects) 
 #  - state auth
 # Download and install the language runtime   
-  - state deploy shnewto/learn-python #--path $CI_PROJECT_DIR/workspace/.state --force
+  - state deploy shnewto/learn-python
 test:
   script:
 # Lint code   
