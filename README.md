@@ -8,7 +8,7 @@ But if you're simply looking to learn python or contribute to the learn-python p
 
 [![Linux Build Status](https://travis-ci.org/shnewto/learn-python.svg?branch=activestate-platform-and-state-tool-setup)](https://travis-ci.org/shnewto/learn-python)
 [![Windows Build status](https://ci.appveyor.com/api/projects/status/fgkvuy680gre708t/branch/activestate-platform-and-state-tool-setup?svg=true)](https://ci.appveyor.com/project/shnewto/learn-python/branch/activestate-platform-and-state-tool-setup)
-[![Github Build Status](https://github.com/shnewto/learn-python/workflows/ActivePython%20application%20on%20GitHub%20CI/badge.svg?branch=activestate-platform-and-state-tool-setup)]
+![ActivePython application on GitHub CI](https://github.com/shnewto/learn-python/workflows/ActivePython%20application%20on%20GitHub%20CI/badge.svg)
 
 > This is a collection of Python scripts that are split by [topics](#table-of-contents) and contain
 code examples with explanations, different use cases and links to further readings.
