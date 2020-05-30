@@ -42,7 +42,7 @@ jobs:
     - name: Deploy project 
       if: matrix.os == 'macos-latest'      
       run: |
-        state deploy MyOrg/learn-python 
+        state deploy shnewto/learn-python 
         echo "::add-path::$GITHUB_WORKSPACE/.cache/bin"
     - name: Deploy project (Linux)
       if: matrix.os == 'ubuntu-latest'      
@@ -50,7 +50,7 @@ jobs:
     - name: Deploy project (Windows)
       if: matrix.os == 'windows-latest'
       run: |
-        state deploy MyOrg/learn-python
+        state deploy shnewto/learn-python
         echo "::add-path::$Env:GITHUB_WORKSPACE\.cache\bin" 
 #      shell: cmd
     # Caching downloaded build using GitHub CI cache
