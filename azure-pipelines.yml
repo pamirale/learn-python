@@ -23,25 +23,19 @@ jobs:
   steps:
   - script: sh <(curl -q https://platform.activestate.com/dl/cli/install.sh) -n
     displayName: 'Install State Tool'
+  - script: state pull
+    displayName: 'Update project'
   - script: |
-      echo $PIPELINE_WORKSPACE
-      export PATH=$PIPELINE_WORKSPACE/bin:$PATH 
-      echo $PATH
-      state deploy MyOrg/learn-python --path $PIPELINE_WORKSPACE
-    displayName: 'Deploy project'
-  - script: |
-      echo $PATH
-      pylint src
-    displayName: 'Lint with pylint'
-  - script: flake8 src --statistics --count
-    displayName: 'Lint with flake8'
-  - script: pytest
-    displayName: 'Test with pytest'
+      state run lints
+      state run tests
+    displayName: 'Activate project and run tests'
 - job: Windows
   pool:
     vmImage: 'windows-latest'
   steps:
-  - powershell: IEX(New-Object Net.WebClient).downloadString('https://platform.activestate.com/dl/cli/install.ps1')
+  - powershell: | 
+      (New-Object Net.WebClient).DownloadFile('https://platform.activestate.com/dl/cli/install.ps1', 'install.ps1')
+      Invoke-Expression "install.ps1 -n"
     displayName: 'Install State Tool'
   - script: state deploy MyOrg/learn-python
     displayName: 'Deploy project'
