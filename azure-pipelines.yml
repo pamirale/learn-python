@@ -35,8 +35,8 @@ jobs:
   steps:
   - powershell: | 
       (New-Object Net.WebClient).DownloadFile('https://platform.activestate.com/dl/cli/install.ps1', 'install.ps1')
-      Invoke-Expression -Command "$env:PIPELINE_WORKSPACE\install.ps1 -n -t $env:AGENT_TOOLSDIRECTORY\state" 
-      Write-Host "##vso[task.prependpath]%AGENT_TOOLSDIRECTORY%\state"
+      Invoke-Expression -Command "$env:PIPELINE_WORKSPACE\install.ps1 -n -t $env:AGENT_TOOLSDIRECTORY/state" 
+      Write-Host "##vso[task.prependpath]$env:AGENT_TOOLSDIRECTORY\state"
     workingDirectory: $(Pipeline.Workspace)
     displayName: 'Install State Tool'
   - script: |
