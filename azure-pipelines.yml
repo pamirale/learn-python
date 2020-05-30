@@ -35,10 +35,12 @@ jobs:
   steps:
   - powershell: | 
       (New-Object Net.WebClient).DownloadFile('https://platform.activestate.com/dl/cli/install.ps1', 'install.ps1')
-      Invoke-Expression -Command "$env:PIPELINE_WORKSPACE\install.ps1 -n" 
+      Invoke-Expression -Command "$env:PIPELINE_WORKSPACE\install.ps1 -n -t $env:AGENT_TOOLSDIRECTORY" 
     workingDirectory: $(Pipeline.Workspace)
     displayName: 'Install State Tool'
-  - script: state deploy MyOrg/learn-python
+  - script: |
+      set
+      state deploy MyOrg/learn-python
     displayName: 'Deploy project'
   - script: pylint src
     displayName: 'Lint with pylint'
