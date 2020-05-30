@@ -33,10 +33,10 @@ jobs:
   pool:
     vmImage: 'windows-latest'
   steps:
-  - pwsh: | 
+  - powershell: | 
       (New-Object Net.WebClient).DownloadFile('https://platform.activestate.com/dl/cli/install.ps1', 'install.ps1')
-      
       Invoke-Expression "install.ps1 -n"
+    workingDirectory: ${{ Pipeline.Workspace }}
     displayName: 'Install State Tool'
   - script: state deploy MyOrg/learn-python
     displayName: 'Deploy project'
