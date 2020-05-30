@@ -24,14 +24,10 @@ jobs:
   - script: sh <(curl -q https://platform.activestate.com/dl/cli/install.sh) -n
     displayName: 'Install State Tool'
   - script: |
-      echo $BUILD_SOURCESDIRECTORY
-      echo $BUILD_BINARIESDIRECTORY
-      echo $BUILD_STAGINGDIRECTORY
-      echo $SYSTEM_DEFAULTWORKINGDIRECTORY
-      export PATH=$PIPELINE_WORKSPACE/bin:$PATH 
-      export SHELL=bash
+      echo $AGENT_TOOLSDIRECTORY
+      export PATH=$AGENT_TOOLSDIRECTORY/bin:$PATH 
       echo $PATH
-      state deploy MyOrg/learn-python
+      state deploy MyOrg/learn-python --path $AGENT_TOOLSDIRECTORY
     displayName: 'Deploy project'
   - script: pylint src
     displayName: 'Lint with pylint'
@@ -43,15 +39,13 @@ jobs:
   pool:
     vmImage: 'windows-latest'
   steps:
-  - bash: sh <(curl -q https://platform.activestate.com/dl/cli/install.sh) -n
+  - powershell: sh <(curl -q https://platform.activestate.com/dl/cli/install.sh) -n
     displayName: 'Install State Tool'
-  - bash: |
-      export SHELL=bash
-      state deploy MyOrg/learn-python
+  - cmd: state deploy MyOrg/learn-python
     displayName: 'Deploy project'
-  - bash: pylint src
+  - cmd: pylint src
     displayName: 'Lint with pylint'
-  - bash: flake8 src --statistics --count
+  - cmd: flake8 src --statistics --count
     displayName: 'Lint with flake8'
-  - bash: pytest
+  - cmd: pytest
     displayName: 'Test with pytest'
