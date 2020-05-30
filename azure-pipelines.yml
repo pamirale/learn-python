@@ -8,9 +8,9 @@ jobs:
     vmImage: 'ubuntu-latest'
   steps:
   - script: sh <(curl -q https://platform.activestate.com/dl/cli/install.sh) -n
-    displayName: 'Install State Tool (Linux)'
+    displayName: 'Install State Tool'
   - script: state deploy MyOrg/learn-python
-    displayName: 'Deploy project (Linux)'
+    displayName: 'Deploy project'
   - script: pylint src
     displayName: 'Lint with pylint'
   - script: flake8 src --statistics --count
@@ -21,7 +21,16 @@ jobs:
   pool:
     vmImage: 'macOS-latest'
   steps:
-  - script: echo hello from macOS
+  - script: sh <(curl -q https://platform.activestate.com/dl/cli/install.sh) -n
+    displayName: 'Install State Tool'
+  - script: state deploy MyOrg/learn-python
+    displayName: 'Deploy project'
+  - script: pylint src
+    displayName: 'Lint with pylint'
+  - script: flake8 src --statistics --count
+    displayName: 'Lint with flake8'
+  - script: pytest
+    displayName: 'Test with pytest'
 - job: Windows
   pool:
     vmImage: 'windows-latest'
