@@ -23,12 +23,20 @@ jobs:
   steps:
   - script: sh <(curl -q https://platform.activestate.com/dl/cli/install.sh) -n
     displayName: 'Install State Tool'
-  - script: state pull
-    displayName: 'Update project'
-  - script: |
-      state run lints
-      state run tests
-    displayName: 'Activate project and run tests'
+  - script: state deploy MyOrg/learn-python
+    displayName: 'Deploy project'
+  - script: pylint src
+    displayName: 'Lint with pylint'
+  - script: flake8 src --statistics --count
+    displayName: 'Lint with flake8'
+  - script: pytest
+    displayName: 'Test with pytest'
+#  - script: state pull
+#    displayName: 'Update project'
+#  - script: |
+#      state run lints
+#      state run tests
+#    displayName: 'Activate project and run tests'
 - job: Windows
   pool:
     vmImage: 'windows-latest'
