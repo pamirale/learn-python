@@ -47,7 +47,7 @@ jobs:
       Write-Host "##vso[task.prependpath]$env:AGENT_TOOLSDIRECTORY\state"
     workingDirectory: $(Pipeline.Workspace)
     displayName: 'Install State Tool'
-  - script: state deploy MyOrg/learn-python
+  - script: state deploy MyOrg/learn-python --path $AGENT_TOOLSDIRECTORY\state
     displayName: 'Deploy project'
   - script: |
       echo %PATH%
