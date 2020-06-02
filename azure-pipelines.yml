@@ -25,7 +25,7 @@ jobs:
     displayName: 'Install State Tool'
   - script: state deploy MyOrg/learn-python
     displayName: 'Deploy project'
-  - script: pylint src
+  - script: echo $PATH
     displayName: 'Lint with pylint'
   - script: flake8 src --statistics --count
     displayName: 'Lint with flake8'
