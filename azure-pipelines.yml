@@ -31,12 +31,6 @@ jobs:
     displayName: 'Lint with flake8'
   - script: pytest
     displayName: 'Test with pytest'
-#  - script: state pull
-#    displayName: 'Update project'
-#  - script: |
-#      state run lints
-#      state run tests
-#    displayName: 'Activate project and run tests'
 - job: Windows
   pool:
     vmImage: 'windows-latest'
@@ -48,17 +42,13 @@ jobs:
     workingDirectory: $(Pipeline.Workspace)
     displayName: 'Install State Tool'
   - script: |
-      echo %PATHEXT%
       state deploy shnewto/learn-python --path %AGENT_TEMPDIRECTORY%
       echo ##vso[task.prependpath]%AGENT_TEMPDIRECTORY%\bin
       echo ##vso[task.setvariable variable=PATHEXT]%PATHEXT%;.LNK
-      echo %PATHEXT%
     displayName: 'Deploy project'
-  - script: |
-      echo %PATHEXT%
-      pylint src
+  - script: pylint src
     displayName: 'Lint with pylint'
-  - script: flake8.lnk src --statistics --count
+  - script: flake8 src --statistics --count
     displayName: 'Lint with flake8'
-  - script: pytest.lnk
+  - script: pytest
     displayName: 'Test with pytest'
