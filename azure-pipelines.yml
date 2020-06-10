@@ -48,6 +48,7 @@ jobs:
     workingDirectory: $(Pipeline.Workspace)
     displayName: 'Install State Tool'
   - script: |
+      echo %PATHEXT%
       state deploy shnewto/learn-python --path %AGENT_TEMPDIRECTORY%
       echo ##vso[task.prependpath]%AGENT_TEMPDIRECTORY%\bin
     displayName: 'Deploy project'
