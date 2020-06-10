@@ -48,21 +48,14 @@ jobs:
     workingDirectory: $(Pipeline.Workspace)
     displayName: 'Install State Tool'
   - script: |
-      echo $(Agent.ToolsDirectory)
-      echo $(Agent.TempDirectory)
-      echo $(Agent.WorkFolder)
-      echo %AGENT_TOOLSDIRECTORY%
-      echo %AGENT_TEMPDIRECTORY%
-      echo %AGENT_WORKFOLDER%
-      state deploy MyOrg/learn-python --path %AGENT_TOOLSDIRECTORY%
-      echo "##vso[task.prependpath]$(Agent.ToolsDirectory)\bin"
+      state deploy MyOrg/learn-python --path %AGENT_TEMPDIRECTORY%
+      echo "##vso[task.prependpath]%AGENT_TEMPDIRECTORY%\bin"
     displayName: 'Deploy project'
   - script: |
       echo %PATH%
-      echo %AGENT_TOOLSDIRECTORY%
-      dir %AGENT_TOOLSDIRECTORY%
+      echo %AGENT_TEMPDIRECTORY%
+      dir %AGENT_TEMPDIRECTORY%
       pylint src
-      dir C:\hostedtoolcache\windows\bin
     displayName: 'Lint with pylint'
   - script: flake8 src --statistics --count
     displayName: 'Lint with flake8'
