@@ -51,9 +51,12 @@ jobs:
       echo %PATHEXT%
       state deploy shnewto/learn-python --path %AGENT_TEMPDIRECTORY%
       echo ##vso[task.prependpath]%AGENT_TEMPDIRECTORY%\bin
+      echo ##vso[task.setvariable variable=PATHEXT]%PATHEXT%;.LNK
+      echo %PATHEXT%
     displayName: 'Deploy project'
   - script: |
-      pylint.lnk src
+      echo %PATHEXT%
+      pylint src
     displayName: 'Lint with pylint'
   - script: flake8.lnk src --statistics --count
     displayName: 'Lint with flake8'
