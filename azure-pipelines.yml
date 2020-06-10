@@ -48,8 +48,9 @@ jobs:
     workingDirectory: $(Pipeline.Workspace)
     displayName: 'Install State Tool'
   - script: |
+      echo $(Agent.ToolsDirectory)
       state deploy MyOrg/learn-python --path %AGENT_TOOLSDIRECTORY%
-      echo "##vso[task.prependpath]%AGENT_TOOLSDIRECTORY%\bin"
+      echo "##vso[task.prependpath]$(Agent.ToolsDirectory)\bin"
     displayName: 'Deploy project'
   - script: |
       echo %PATH%
