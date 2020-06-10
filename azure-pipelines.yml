@@ -46,9 +46,9 @@ jobs:
       Invoke-Expression -Command "$env:PIPELINE_WORKSPACE\install.ps1 -n -t $env:AGENT_TOOLSDIRECTORY/bin" 
     workingDirectory: $(Pipeline.Workspace)
     displayName: 'Install State Tool'
-  - script: |
-      echo ##vso[task.prependpath]%AGENT_TOOLSDIRECTORY%\bin
-      state deploy MyOrg/learn-python --path %AGENT_TOOLSDIRECTORY%
+  - script: @echo ##vso[task.prependpath]%AGENT_TOOLSDIRECTORY%\bin 
+    displayName: 'Set Path in Batch'
+  - script: state deploy MyOrg/learn-python --path %AGENT_TOOLSDIRECTORY%
     displayName: 'Deploy project'
   - script: |
       echo %PATH%
