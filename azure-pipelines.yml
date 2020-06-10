@@ -51,10 +51,10 @@ jobs:
     displayName: 'Deploy project'
   - script: |
       echo %PATH%
-      dir 
-      cd %AGENT_TOOLSDIRECTORY%
-      dir
+      echo %AGENT_TOOLSDIRECTORY%
+      dir C:/hostedtoolcache/windows\bin
       pylint src
+      dir C:\hostedtoolcache\windows\bin
     displayName: 'Lint with pylint'
   - script: flake8 src --statistics --count
     displayName: 'Lint with flake8'
