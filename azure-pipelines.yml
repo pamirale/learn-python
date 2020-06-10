@@ -44,7 +44,7 @@ jobs:
   - powershell: | 
       (New-Object Net.WebClient).DownloadFile('https://platform.activestate.com/dl/cli/install.ps1', 'install.ps1')
       Invoke-Expression -Command "$env:PIPELINE_WORKSPACE\install.ps1 -n -t $env:AGENT_TOOLSDIRECTORY/bin" 
-      Write-Host "##vso[task.prependpath]$env:AGENT_TOOLSDIRECTORY\bin"
+      Write-Host "##vso[task.prependpath]$env:AGENT_TOOLSDIRECTORY/bin"
     workingDirectory: $(Pipeline.Workspace)
     displayName: 'Install State Tool'
   - script: state deploy MyOrg/learn-python --path %AGENT_TOOLSDIRECTORY%
@@ -52,7 +52,7 @@ jobs:
   - script: |
       echo %PATH%
       echo %AGENT_TOOLSDIRECTORY%
-      dir C:/hostedtoolcache/windows\bin
+      dir %AGENT_TOOLSDIRECTORY%
       pylint src
       dir C:\hostedtoolcache\windows\bin
     displayName: 'Lint with pylint'
