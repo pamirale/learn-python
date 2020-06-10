@@ -48,13 +48,10 @@ jobs:
     workingDirectory: $(Pipeline.Workspace)
     displayName: 'Install State Tool'
   - script: |
-      state deploy MyOrg/learn-python --path %AGENT_TEMPDIRECTORY%
+      state deploy shnewto/learn-python --path %AGENT_TEMPDIRECTORY%
       echo ##vso[task.prependpath]%AGENT_TEMPDIRECTORY%\bin
     displayName: 'Deploy project'
   - script: |
-      echo %PATH%
-      echo %AGENT_TEMPDIRECTORY%
-      dir %AGENT_TEMPDIRECTORY%\bin
       pylint.lnk src
     displayName: 'Lint with pylint'
   - script: flake8.lnk src --statistics --count
