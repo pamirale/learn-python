@@ -55,9 +55,9 @@ jobs:
       echo %PATH%
       echo %AGENT_TEMPDIRECTORY%
       dir %AGENT_TEMPDIRECTORY%\bin
-      pylint src
+      pylint.lnk src
     displayName: 'Lint with pylint'
-  - script: flake8 src --statistics --count
+  - script: flake8.lnk src --statistics --count
     displayName: 'Lint with flake8'
-  - script: pytest
+  - script: pytest.lnk
     displayName: 'Test with pytest'
