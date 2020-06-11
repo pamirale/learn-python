@@ -1,5 +1,4 @@
 # Python application example with ActiveState Platform
-
 trigger:
 - activestate-platform-and-state-tool-setup
 jobs:
