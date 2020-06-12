@@ -16,10 +16,16 @@ jobs:
     # The type of runner that the job will run on (this one is a matrix build)
     runs-on: ${{ matrix.os }}
     strategy:
+<<<<<<< HEAD
       fail-fast: false
       matrix:
         # Building on both Windows, Linux(Ubuntu) and Mac simultaneously 
         os: [windows-latest, ubuntu-latest, macos-latest]        
+=======
+      matrix:
+        # Building on both Windows and Linux(Ubuntu) simultaneously 
+        os: [windows-latest, ubuntu-latest]
+>>>>>>> upstream/activestate-platform-and-state-tool-setup
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
@@ -30,12 +36,16 @@ jobs:
         (New-Object Net.WebClient).DownloadFile('https://platform.activestate.com/dl/cli/install.ps1', 'install.ps1'); 
         Invoke-Expression -Command "$Env:GITHUB_WORKSPACE\install.ps1 -n -t $Env:GITHUB_WORKSPACE"
         echo "::add-path::$Env:GITHUB_WORKSPACE"
+<<<<<<< HEAD
 #      shell: powershell
+=======
+>>>>>>> upstream/activestate-platform-and-state-tool-setup
     # Installing State Tool on Linux with default shell behavior
     - name: Install State Tool (Linux)            
       if: matrix.os != 'windows-latest'      
       run: sh <(curl -q https://platform.activestate.com/dl/cli/install.sh) -n
     # Checking ActiveState Platform for project updates
+<<<<<<< HEAD
     #- name: Update project
     #  run: state pull
     # Checking ActiveState Platform for project updates
@@ -53,6 +63,10 @@ jobs:
         state deploy shnewto/learn-python
         echo "::add-path::$Env:GITHUB_WORKSPACE\.cache\bin" 
 #      shell: cmd
+=======
+    - name: Update project
+      run: state pull
+>>>>>>> upstream/activestate-platform-and-state-tool-setup
     # Caching downloaded build using GitHub CI cache
     - name: Cache state tool cache
       uses: actions/cache@v1
@@ -64,6 +78,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-build-${{ env.cache-name }}
     # Execute linting of the project on ActivePython
+<<<<<<< HEAD
     - name: Lint with pylint
       if: matrix.os != 'windows-latest'
       run: pylint src
@@ -78,3 +93,10 @@ jobs:
     # Running project tests using pytest on ActivePython
     - name: Test with pytest
       run: pytest
+=======
+    - name: Lint with flake8
+      run: state run lints
+    # Running project tests using pytest on ActivePython
+    - name: Test with pytest
+      run: state run tests
+>>>>>>> upstream/activestate-platform-and-state-tool-setup
