@@ -38,6 +38,7 @@ jobs:
       (New-Object Net.WebClient).DownloadFile('https://platform.activestate.com/dl/cli/install.ps1', 'install.ps1')
       Invoke-Expression -Command "$env:PIPELINE_WORKSPACE\install.ps1 -n -t $env:AGENT_TOOLSDIRECTORY/bin" 
       Write-Host "##vso[task.prependpath]$env:AGENT_TOOLSDIRECTORY\bin"
+    workingDirectory: $(Pipeline.Workspace)      
     displayName: 'Install State Tool'
   - script: |
       state deploy ActiveState-Labs/learn-python --path %AGENT_TEMPDIRECTORY%
